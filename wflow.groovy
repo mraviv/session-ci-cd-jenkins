@@ -17,12 +17,10 @@ parallel (
         sh 'sudo docker build --no-cache -t localhost:5000/opsschool_dummy_app:latest .'
         sh 'sudo docker push localhost:5000/opsschool_dummy_app:latest'
         sh 'sudo docker-compose stop'
-        try {
-            sh 'sudo docker rm -f opsschool_dummy_app'
-            sh 'sudo docker rm -f dummyappbuildworkflow_nginx_1'
-        } catch (e){
-            print e
-        }
+
+        sh 'sudo docker rm -f opsschool_dummy_app || true'
+        sh 'sudo docker rm -f dummyappbuildworkflow_nginx_1 || true'
+
     }
 
     stage('Deploy'){
@@ -51,12 +49,9 @@ parallel (
                 sh 'sudo docker build --no-cache -t localhost:5000/opsschool_dummy_app:latest .'
                 sh 'sudo docker push localhost:5000/opsschool_dummy_app:latest'
                 sh 'sudo docker-compose stop'
-                try {
-                    sh 'sudo docker rm -f opsschool_dummy_app'
-                    sh 'sudo docker rm -f dummyappbuildworkflow_nginx_1'
-                } catch (e){
-                    print e
-                }
+
+                sh 'sudo docker rm -f opsschool_dummy_app || true'
+                sh 'sudo docker rm -f dummyappbuildworkflow_nginx_1 || true'
             }
 
             stage('Deploy'){

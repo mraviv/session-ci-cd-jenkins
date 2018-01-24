@@ -33,7 +33,7 @@ parallel (
     junit 'test/reports/*.xml'
 
 },
-        node ('opsschool-slaves'){
+        node ('ops-school-dynamic-slave'){
             currentBuild.result = "SUCCESS"
 
             stage('Checkout'){
